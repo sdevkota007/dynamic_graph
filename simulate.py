@@ -1,5 +1,6 @@
 from __future__ import division
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class Graph:
@@ -7,10 +8,10 @@ class Graph:
         self.p = p_birth
         self.q = 1 - self.p
         self.nodes = {
-            "1": ['2'],
-            "2": ['1','4','3'],
-            "3": ['2','4'],
-            "4": ['2','3']
+            1: [2],
+            2: [1,4,3],
+            3: [2,4],
+            4: [2,3]
         }
         # self.nodes = {
         #     "1": ['3'],
@@ -38,10 +39,12 @@ class Graph:
         print preference_probability
         print self.nodes.keys()
         preferred_node = np.random.choice(self.nodes.keys(), 1, p=preference_probability)[0]
-        new_node = str(int(self.nodes.keys()[-1]) + 1)
+        #new_node = int(self.nodes.keys()[-1]) + 1
+        new_node = int(max(self.nodes.keys())) + 1
+
 
         print "New node: ", new_node
-        print "preferred node: ", preferred_node
+        print "preferred node to join: ", preferred_node
         self.update_nodes('birth', new_node, preferred_node)
         self.update_num_edges()
 
@@ -92,8 +95,19 @@ class Graph:
 
 
 if __name__ == '__main__':
+    number_of_iteration = 1000
     g = Graph(0.7)
-    for i in range(100):
+    for i in range(number_of_iteration):
         print "*****************TIME STEP {}********************".format(i)
         g.run()
         print "\n \n"
+
+    x = [1, 2, 3]
+    y = [5, 7, 4]
+
+    x2 = [1, 2, 3]
+    y2 = [10, 14, 12]
+
+
+    plt.plot(x, y, label='First Line')
+    plt.plot(x2, y2, label='Second Line')
