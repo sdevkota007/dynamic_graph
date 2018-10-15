@@ -110,4 +110,4 @@ if __name__ == '__main__':
 
 
     plt.plot(x, y, label='First Line')
-    plt.plot(x2, y2, label='Second Line')
+    #plt.plot(x2, y2, label='Second Line')
